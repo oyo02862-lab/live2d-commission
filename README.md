@@ -4,7 +4,7 @@ OYO(오요)의 Live2D 리깅 커미션 페이지입니다.
 
 ## 커미션 페이지
 
-🔗 **[OYO Live2D 리깅 커미션 페이지 바로가기](https://oyo02862-lab.github.io/live2d-commission/)**
+https://oyo02862-lab.github.io/live2d-commission/
 
 ## 페이지 구성
 
