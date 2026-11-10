@@ -738,13 +738,6 @@ footer {
             신청양식 복사
           </button>
 
-          <button
-            class="btn secondary"
-            id="download"
-            type="button"
-          >
-            텍스트로 저장
-          </button>
         </div>
 
         <span
@@ -1140,28 +1133,6 @@ form.addEventListener("submit", async event => {
   }
 });
 
-/* DOWNLOAD TXT */
-
-document.getElementById("download").addEventListener("click", () => {
-  const blob = new Blob(
-    [application()],
-    { type: "text/plain;charset=utf-8" }
-  );
-
-  const url = URL.createObjectURL(blob);
-  const link = document.createElement("a");
-
-  link.href = url;
-  link.download = "oyo-commission-request.txt";
-
-  document.body.appendChild(link);
-  link.click();
-  link.remove();
-
-  setTimeout(() => URL.revokeObjectURL(url), 1000);
-
-  statusEl.textContent = "텍스트 파일로 저장했습니다.";
-});
 
 </script>
 </body>
