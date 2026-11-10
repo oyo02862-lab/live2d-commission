@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="오요 OYO Live2D 리깅 커미션">
+<title>OYO — 오요 Live2D 리깅</title>
+
+<style>
+:root {
+  --bg: #f7f7f9;
+  --ink: #19181d;
+  --muted: #817c88;
+  --line: #e7e4ec;
+  --accent: #b49bd5;
+  --accent-text: #81649f;
+  --soft: #f2edf8;
+  --night: #18171c;
+  --art: #24212b;
+  --artline: #44394f;
+}
+
+* { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 85px;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: Arial, "Noto Sans KR", sans-serif;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; text-decoration: none; }
+button, input, textarea { font: inherit; }
+button { cursor: pointer; }
+[hidden] { display: none !important; }
+
+/* HEADER */
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: #ffffffed;
+  backdrop-filter: blur(18px);
+  border-bottom: 1px solid var(--line);
+}
+
+nav {
+  max-width: 1160px;
+  margin: auto;
+  padding: 18px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 25px;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 3px;
+  font-size: 25px;
+  font-weight: 800;
+  letter-spacing: -1.8px;
+}
+
+.logo-dot {
+  display: inline-block;
+  flex: none;
+  width: .15em;
+  height: .15em;
+  margin-left: .04em;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.navlinks {
+  display: flex;
+  gap: 25px;
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.navlinks a:hover { color: var(--accent-text); }
+
+.container {
+  max-width: 1100px;
+  padding: 75px 30px;
+  margin: auto;
+}
+
+/* HERO */
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  background: #fff;
+}
+
+.hero:after {
+  content: "";
+  position: absolute;
+  width: 430px;
+  height: 430px;
+  right: -180px;
+  top: -240px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 65px #fcfbfd,
+    0 0 0 66px var(--line),
+    0 0 0 130px #fefefe;
+  pointer-events: none;
+}
+
+.hero .container {
+  position: relative;
+  z-index: 1;
+  padding-top: 65px;
+  padding-bottom: 35px;
+}
+
+.label {
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--muted);
+}
+
+.hero h1 {
+  display: flex;
+  align-items: baseline;
+  width: fit-content;
+  font-size: clamp(85px, 16vw, 160px);
+  font-weight: 800;
+  letter-spacing: -10px;
+  line-height: 1;
+  margin: 28px 0 20px;
+}
+
+.hero h1 .logo-dot {
+  width: .14em;
+  height: .14em;
+  margin-left: .09em;
+}
+
+.hero p {
+  font-size: 15px;
+  color: #77717e;
+  margin: 0;
+}
+
+.hero-bottom {
+  border-top: 1px solid var(--line);
+  margin-top: 40px;
+  padding-top: 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.hero-bottom a { color: var(--ink); }
+.hero-bottom a:hover { color: var(--accent-text); }
+
+/* SECTION */
+
+.heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 20px;
+  margin-bottom: 28px;
+}
+
+.heading h2 {
+  font-size: 29px;
+  letter-spacing: -1.2px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.number {
+  display: block;
+  font-size: 10px;
+  color: var(--accent-text);
+  margin-bottom: 10px;
+}
+
+.dark {
+  background: var(--night);
+  color: #fff;
+}
+
+.dark .number { color: var(--accent); }
+
+/* PORTFOLIO */
+
+.works {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px 22px;
+}
+
+.video-frame {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: var(--art);
+  border: 1px solid var(--artline);
+  overflow: hidden;
+}
+
+.video-frame video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #151318;
+}
+
+.video-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 18px;
+  text-align: center;
+  color: #b8abc5;
+  font-size: 11px;
+  background: radial-gradient(
+    circle at center, #302738 0, transparent 65%
+  );
+}
+
+.video-placeholder svg {
+  width: 35px;
+  height: 35px;
+  color: var(--accent);
+}
+
+.video-error {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 25px;
+  background: var(--art);
+  color: #d4c7df;
+  font-size: 11px;
+  text-align: center;
+}
+
+.work-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  padding-top: 13px;
+}
+
+.work h3 {
+  font-size: 14px;
+  font-weight: 500;
+  margin: 0;
+}
+
+.work p {
+  font-size: 10px;
+  color: #aaa1b2;
+  margin: 4px 0 0;
+}
+
+.work-index {
+  font-family: Georgia, serif;
+  color: #a28bb7;
+  font-size: 16px;
+}
+
+/* RIGGING SAMPLES */
+
+.sample-group + .sample-group {
+  margin-top: 38px;
+}
+
+.group-heading {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  margin-bottom: 16px;
+}
+
+.group-heading h3 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.group-heading:after {
+  content: "";
+  height: 1px;
+  background: var(--line);
+  flex: 1;
+}
+
+.sample-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.sample-card { min-width: 0; }
+
+.sample-card .video-frame {
+  aspect-ratio: 1 / 1;
+  background: var(--soft);
+  border-color: var(--line);
+}
+
+/* GIF */
+
+.gif-frame {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: var(--soft);
+  border: 1px solid var(--line);
+}
+
+.gif-frame img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.gif-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+  background: var(--soft);
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.gif-placeholder svg {
+  width: 28px;
+  height: 28px;
+  color: #aa91c5;
+}
+
+.gif-error {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 15px;
+  text-align: center;
+  color: var(--muted);
+  background: var(--soft);
+  font-size: 10px;
+}
+
+.sample-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding-top: 12px;
+}
+
+.sample-meta h4 {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.sample-meta span {
+  color: var(--accent-text);
+  font-family: Georgia, serif;
+  font-size: 12px;
+}
+
+/* APPLICATION */
+
+.white {
+  background: #fff;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.request-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.7fr;
+  gap: 55px;
+}
+
+.request-intro h2 {
+  font-size: 29px;
+  letter-spacing: -1.2px;
+  font-weight: 600;
+  margin: 0 0 18px;
+}
+
+.request-intro p {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.9;
+}
+
+.formgrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+label {
+  font-size: 11px;
+  font-weight: 600;
+  display: block;
+}
+
+input, textarea {
+  display: block;
+  width: 100%;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  background: var(--bg);
+  margin-top: 8px;
+  padding: 13px 12px;
+  color: var(--ink);
+  border-radius: 0;
+  font-size: 12px;
+}
+
+input:focus, textarea:focus {
+  outline: 1px solid var(--accent-text);
+  border-color: var(--accent-text);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #938b9b;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 95px;
+}
+
+.full { grid-column: 1 / -1; }
+
+.actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 22px;
+}
+
+.btn {
+  background: var(--ink);
+  border: 1px solid var(--ink);
+  color: #fff;
+  font-size: 11px;
+  padding: 12px 20px;
+  border-radius: 3px;
+}
+
+.btn:hover {
+  background: var(--accent-text);
+  border-color: var(--accent-text);
+}
+
+.btn.secondary {
+  background: #fff;
+  color: var(--ink);
+  border-color: var(--line);
+}
+
+.btn.secondary:hover {
+  background: var(--soft);
+  border-color: var(--accent);
+}
+
+.notice {
+  font-size: 10px;
+  color: var(--muted);
+  line-height: 1.8;
+  margin: 17px 0;
+}
+
+#message {
+  display: block;
+  font-size: 11px;
+  color: var(--accent-text);
+  margin-top: 12px;
+}
+
+#fallbackBox { margin-top: 20px; }
+
+/* FOOTER */
+
+footer {
+  background: var(--night);
+  color: #fff;
+}
+
+.footer-inner {
+  max-width: 1100px;
+  margin: auto;
+  padding: 28px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.footer-brand {
+  display: inline-flex;
+  align-items: baseline;
+  font-size: 23px;
+  font-weight: 800;
+  letter-spacing: -1.5px;
+}
+
+.top-link {
+  border: 1px solid var(--artline);
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  display: grid;
+  place-items: center;
+}
+
+.top-link:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+/* MOBILE */
+
+@media(prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+@media(max-width:700px) {
+  nav {
+    padding: 16px 20px;
+    gap: 18px;
+  }
+
+  .navlinks {
+    gap: 17px;
+    overflow: auto;
+    white-space: nowrap;
+    max-width: 73%;
+    font-size: 10px;
+  }
+
+  .container { padding: 50px 22px; }
+
+  .hero .container {
+    padding-top: 45px;
+    padding-bottom: 25px;
+  }
+
+  .hero h1 { letter-spacing: -6px; }
+  .hero:after { right: -340px; }
+  .hero p { font-size: 13px; }
+
+  .heading h2,
+  .request-intro h2 {
+    font-size: 26px;
+  }
+
+  .works {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .work h3 { font-size: 13px; }
+
+  .sample-grid { gap: 12px; }
+  .sample-meta { padding-top: 9px; }
+  .sample-meta h4 { font-size: 11px; }
+  .sample-meta span { font-size: 10px; }
+
+  .sample-group + .sample-group {
+    margin-top: 28px;
+  }
+
+  .request-layout {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .formgrid { gap: 18px 14px; }
+  .footer-inner { padding: 24px 22px; }
+}
+
+@media(max-width:380px) {
+  .formgrid { grid-template-columns: 1fr; }
+  .full { grid-column: auto; }
+  .sample-grid { gap: 8px; }
+  .sample-meta span { display: none; }
+}
+</style>
+</head>
+
+<body id="top">
+
+<header>
+  <nav aria-label="주 메뉴">
+    <a href="#top" class="brand" aria-label="오요 홈">
+      OYO<span class="logo-dot" aria-hidden="true"></span>
+    </a>
+
+    <div class="navlinks">
+      <a href="#portfolio">포트폴리오</a>
+      <a href="#detail">리깅 샘플</a>
+      <a href="#request">신청양식</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <span class="label">LIVE2D RIGGING</span>
+
+      <h1 aria-label="OYO">
+        OYO<span class="logo-dot" aria-hidden="true"></span>
+      </h1>
+
+      <p>오요 · Live2D 리깅 커미션</p>
+
+      <div class="hero-bottom">
+        <span>커미션 안내</span>
+        <a href="#portfolio">포트폴리오 보기 ↓</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PORTFOLIO -->
+  <section class="dark" id="portfolio">
+    <div class="container">
+      <div class="heading">
+        <div>
+          <span class="number">01</span>
+          <h2>포트폴리오</h2>
+        </div>
+      </div>
+
+      <div class="works" id="showcases"></div>
+    </div>
+  </section>
+
+  <!-- RIGGING SAMPLES -->
+  <section id="detail">
+    <div class="container">
+      <div class="heading">
+        <div>
+          <span class="number">02</span>
+          <h2>리깅 샘플</h2>
+        </div>
+      </div>
+
+      <div id="riggingSamples"></div>
+    </div>
+  </section>
+
+  <!-- APPLICATION -->
+  <section id="request" class="white">
+    <div class="container request-layout">
+
+      <div class="request-intro">
+        <span class="number">03</span>
+        <h2>신청양식</h2>
+        <p>
+          양식을 작성한 뒤 복사하여<br>
+          아트머그 문의에 붙여넣어 주세요.
+        </p>
+      </div>
+
+      <form id="requestForm">
+        <div class="formgrid">
+
+          <label>
+            활동명
+            <input
+              name="nickname"
+              placeholder="활동명 또는 닉네임"
+            >
+          </label>
+
+          <label>
+            일러스트 준비 상태
+            <input
+              name="illustration"
+              placeholder="PSD 준비 상태 / 전달 예정일"
+            >
+          </label>
+
+          <label class="full">
+            신청 내용 · 추가 옵션
+            <textarea
+              name="options"
+              placeholder="전신 리깅, VBridger, 추가 표정 등"
+            ></textarea>
+          </label>
+
+          <label class="full">
+            기타 문의/요청 사항
+            <textarea
+              name="notes"
+              placeholder="기타 문의 또는 요청 사항"
+            ></textarea>
+          </label>
+
+        </div>
+
+        <div class="actions">
+          <button class="btn" type="submit">
+            신청양식 복사
+          </button>
+
+          <button
+            class="btn secondary"
+            id="download"
+            type="button"
+          >
+            텍스트로 저장
+          </button>
+        </div>
+
+        <span
+          id="message"
+          role="status"
+          aria-live="polite"
+        ></span>
+
+        <p class="notice">
+          이 양식은 자동으로 접수되지 않습니다.
+          작성한 내용을 아트머그의 ‘작가에게 문의’로 보내주세요.
+        </p>
+
+        <label id="fallbackBox" hidden>
+          아래 내용을 직접 복사해 주세요
+          <textarea id="fallback" readonly></textarea>
+        </label>
+
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand" aria-label="OYO">
+      OYO<span class="logo-dot" aria-hidden="true"></span>
+    </div>
+
+    <a class="top-link" href="#top" aria-label="맨 위로">
+      ↑
+    </a>
+  </div>
+</footer>
+
+<script>
+
+/*
+영상 설정
+
+포트폴리오:
+MP4 / WebM 영상 파일 사용
+
+리깅 샘플:
+GIF 파일 사용
+
+예시:
+src: "videos/showcase-01.mp4"
+gif: "images/head-x.gif"
+
+HTML 파일과 같은 폴더에 videos, images 폴더를 만들면 됩니다.
+*/
+
+/* PORTFOLIO VIDEO SETTINGS */
+
+const showcaseVideos = [
+  {
+    title: "쇼케이스 01",
+    description: "",
+    src: "",
+    poster: ""
+  },
+  {
+    title: "쇼케이스 02",
+    description: "",
+    src: "",
+    poster: ""
+  },
+  {
+    title: "쇼케이스 03",
+    description: "",
+    src: "",
+    poster: ""
+  },
+  {
+    title: "쇼케이스 04",
+    description: "",
+    src: "",
+    poster: ""
+  }
+];
+
+/* RIGGING GIF SETTINGS */
+
+const riggingGroups = [
+  {
+    title: "머리",
+    videos: [
+      {
+        title: "머리 X",
+        gif: "",
+        alt: "머리 X 리깅 샘플"
+      },
+      {
+        title: "머리 Y",
+        gif: "",
+        alt: "머리 Y 리깅 샘플"
+      },
+      {
+        title: "머리 Z",
+        gif: "",
+        alt: "머리 Z 리깅 샘플"
+      }
+    ]
+  },
+  {
+    title: "몸",
+    videos: [
+      {
+        title: "몸 X",
+        gif: "",
+        alt: "몸 X 리깅 샘플"
+      },
+      {
+        title: "몸 Y",
+        gif: "",
+        alt: "몸 Y 리깅 샘플"
+      },
+      {
+        title: "몸 Z",
+        gif: "",
+        alt: "몸 Z 리깅 샘플"
+      }
+    ]
+  },
+  {
+    title: "물리",
+    videos: [
+      {
+        title: "물리 01",
+        gif: "",
+        alt: "물리 샘플 01"
+      },
+      {
+        title: "물리 02",
+        gif: "",
+        alt: "물리 샘플 02"
+      },
+      {
+        title: "물리 03",
+        gif: "",
+        alt: "물리 샘플 03"
+      }
+    ]
+  }
+];
+
+/* VIDEO FRAME */
+
+function createVideoFrame(item) {
+  const frame = document.createElement("div");
+  frame.className = "video-frame";
+
+  const src = String(item.src || "").trim();
+
+  if (!src) {
+    const placeholder = document.createElement("div");
+    placeholder.className = "video-placeholder";
+
+    placeholder.innerHTML =
+      '<svg viewBox="0 0 40 40" fill="none" aria-hidden="true">' +
+      '<rect x="3" y="7" width="34" height="26" rx="4" stroke="currentColor"/>' +
+      '<path d="m17 14 11 6-11 6V14Z" fill="currentColor"/>' +
+      '</svg>';
+
+    const text = document.createElement("span");
+    text.textContent = "영상 추가 예정";
+
+    placeholder.appendChild(text);
+    frame.appendChild(placeholder);
+
+    return frame;
+  }
+
+  const video = document.createElement("video");
+
+  video.controls = true;
+  video.playsInline = true;
+  video.preload = "none";
+  video.setAttribute("aria-label", item.title || "쇼케이스 영상");
+
+  if (item.poster) {
+    video.poster = item.poster;
+  }
+
+  video.addEventListener("error", () => {
+    const error = document.createElement("div");
+    error.className = "video-error";
+    error.textContent =
+      "영상을 불러오지 못했습니다. 파일 경로와 형식을 확인해 주세요.";
+
+    frame.appendChild(error);
+  }, { once: true });
+
+  video.src = src;
+  frame.appendChild(video);
+
+  return frame;
+}
+
+/* GIF FRAME */
+
+function createGifFrame(item) {
+  const frame = document.createElement("div");
+  frame.className = "gif-frame";
+
+  const src = String(item.gif || "").trim();
+
+  if (!src) {
+    const placeholder = document.createElement("div");
+    placeholder.className = "gif-placeholder";
+
+    placeholder.innerHTML =
+      '<svg viewBox="0 0 40 40" fill="none" aria-hidden="true">' +
+      '<rect x="3" y="3" width="34" height="34" rx="5" stroke="currentColor"/>' +
+      '<path d="M20 11v18M11 20h18" stroke="currentColor" stroke-width="1.5"/>' +
+      '</svg>';
+
+    const text = document.createElement("span");
+    text.textContent = "GIF 추가 예정";
+
+    placeholder.appendChild(text);
+    frame.appendChild(placeholder);
+
+    return frame;
+  }
+
+  const img = document.createElement("img");
+
+  img.src = src;
+  img.alt = item.alt || item.title || "리깅 샘플";
+  img.loading = "lazy";
+  img.decoding = "async";
+
+  img.addEventListener("error", () => {
+    const error = document.createElement("div");
+    error.className = "gif-error";
+    error.textContent =
+      "GIF를 불러오지 못했습니다. 파일 경로를 확인해 주세요.";
+
+    frame.appendChild(error);
+  }, { once: true });
+
+  frame.appendChild(img);
+
+  return frame;
+}
+
+/* SHOWCASE RENDER */
+
+const showcaseContainer =
+  document.getElementById("showcases");
+
+showcaseVideos.forEach((item, index) => {
+  const article = document.createElement("article");
+  article.className = "work";
+
+  const meta = document.createElement("div");
+  meta.className = "work-meta";
+
+  const info = document.createElement("div");
+
+  const title = document.createElement("h3");
+  title.textContent =
+    item.title || "쇼케이스 " + (index + 1);
+
+  info.appendChild(title);
+
+  if (item.description) {
+    const description = document.createElement("p");
+    description.textContent = item.description;
+    info.appendChild(description);
+  }
+
+  const number = document.createElement("span");
+  number.className = "work-index";
+  number.textContent =
+    String(index + 1).padStart(2, "0");
+
+  meta.append(info, number);
+
+  article.append(
+    createVideoFrame(item),
+    meta
+  );
+
+  showcaseContainer.appendChild(article);
+});
+
+/* RIGGING GIF RENDER */
+
+const sampleContainer =
+  document.getElementById("riggingSamples");
+
+let sampleNumber = 0;
+
+riggingGroups.forEach(group => {
+  const section = document.createElement("section");
+  section.className = "sample-group";
+
+  section.setAttribute(
+    "aria-label",
+    group.title + " 리깅 샘플"
+  );
+
+  const heading = document.createElement("div");
+  heading.className = "group-heading";
+
+  const title = document.createElement("h3");
+  title.textContent = group.title;
+
+  heading.appendChild(title);
+
+  const grid = document.createElement("div");
+  grid.className = "sample-grid";
+
+  group.videos.forEach(item => {
+    sampleNumber++;
+
+    const article = document.createElement("article");
+    article.className = "sample-card";
+
+    const meta = document.createElement("div");
+    meta.className = "sample-meta";
+
+    const name = document.createElement("h4");
+    name.textContent = item.title;
+
+    const number = document.createElement("span");
+    number.textContent =
+      String(sampleNumber).padStart(2, "0");
+
+    meta.append(name, number);
+
+    article.append(
+      createGifFrame(item),
+      meta
+    );
+
+    grid.appendChild(article);
+  });
+
+  section.append(heading, grid);
+  sampleContainer.appendChild(section);
+});
+
+/* APPLICATION FORM */
+
+const form = document.getElementById("requestForm");
+const statusEl = document.getElementById("message");
+const fallbackBox = document.getElementById("fallbackBox");
+const fallback = document.getElementById("fallback");
+
+function application() {
+  const data = new FormData(form);
+
+  const fields = [
+    ["활동명", "nickname"],
+    ["일러스트 준비 상태", "illustration"],
+    ["신청 내용 · 추가 옵션", "options"],
+    ["기타 문의/요청 사항", "notes"]
+  ];
+
+  return "오요 OYO · Live2D 리깅 문의\n\n" +
+    fields.map(([label, key]) => {
+      const value = String(data.get(key) || "").trim();
+
+      return label + ": " + (value || "미기재");
+    }).join("\n\n");
+}
+
+/* COPY FORM */
+
+form.addEventListener("submit", async event => {
+  event.preventDefault();
+
+  try {
+    await navigator.clipboard.writeText(application());
+
+    fallbackBox.hidden = true;
+    statusEl.textContent = "복사했습니다.";
+
+  } catch {
+    fallbackBox.hidden = false;
+    fallback.value = application();
+    fallback.focus();
+    fallback.select();
+
+    statusEl.textContent =
+      "선택된 내용을 직접 복사해 주세요.";
+  }
+});
+
+/* DOWNLOAD TXT */
+
+document.getElementById("download").addEventListener("click", () => {
+  const blob = new Blob(
+    [application()],
+    { type: "text/plain;charset=utf-8" }
+  );
+
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+
+  link.href = url;
+  link.download = "oyo-commission-request.txt";
+
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+
+  statusEl.textContent = "텍스트 파일로 저장했습니다.";
+});
+
+</script>
+</body>
+</html>
